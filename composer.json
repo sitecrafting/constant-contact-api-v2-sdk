@@ -1,5 +1,5 @@
 {
-  "name": "constantcontact/constantcontact",
+  "name": "sitecrafting/constant-contact-sdk",
   "type": "library",
   "description": "Constant Contact PHP SDK for v2",
   "keywords": [
