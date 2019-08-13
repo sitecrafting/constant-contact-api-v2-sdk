@@ -6,7 +6,7 @@ use Ctct\Components\Account\VerifiedEmailAddress;
 use Ctct\Exceptions\CtctException;
 use Ctct\Util\Config;
 use GuzzleHttp\Exception\TransferException;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Request;
 
 /**
  * Performs all actions pertaining to scheduling Constant Contact Account's
@@ -14,7 +14,8 @@ use GuzzleHttp\Psr7;
  * @package Services
  * @author Constant Contact
  */
-class AccountService extends BaseService {
+class AccountService extends BaseService
+{
     /**
      * Get all verified email addresses associated with an account
      * @param string $accessToken - Constant Contact OAuth2 Access Token
@@ -24,17 +25,17 @@ class AccountService extends BaseService {
      * @return array of VerifiedEmailAddress
      * @throws CtctException
      */
-    public function getVerifiedEmailAddresses($accessToken, Array $params = array()) {
+    public function getVerifiedEmailAddresses($accessToken, array $params = array())
+    {
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.account_verified_addresses');
-        $request = parent::sendRequestWithoutBody($accessToken, 'GET', $baseUrl, $params);
-
         try {
-            $response = parent::getClient()->send($request);
+            $response = parent::sendRequestWithoutBody($accessToken, 'GET', $baseUrl, $params);
         } catch (TransferException $e) {
             throw parent::convertException($e);
         }
 
         $verifiedAddresses = array();
+
         foreach (json_decode($response->getBody(), true) as $verifiedAddress) {
             $verifiedAddresses[] = VerifiedEmailAddress::create($verifiedAddress);
         }
@@ -50,7 +51,8 @@ class AccountService extends BaseService {
      * @return array - array of VerifiedEmailAddress created
      * @throws CtctException
      */
-    public function createVerifiedEmailAddress($accessToken, $emailAddress) {
+    public function createVerifiedEmailAddress($accessToken, $emailAddress)
+    {
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.account_verified_addresses');
         $request = parent::sendRequestWithBody($accessToken, 'POST', $baseUrl, array(array("email_address" => $emailAddress)));
 
@@ -61,6 +63,7 @@ class AccountService extends BaseService {
         }
 
         $verifiedAddresses = array();
+
         foreach (json_decode($response->getBody(), true) as $verifiedAddress) {
             $verifiedAddresses[] = VerifiedEmailAddress::create($verifiedAddress);
         }
@@ -74,7 +77,8 @@ class AccountService extends BaseService {
      * @return AccountInfo
      * @throws CtctException
      */
-    public function getAccountInfo($accessToken) {
+    public function getAccountInfo($accessToken)
+    {
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.account_info');
 
         $request = parent::sendRequestWithoutBody($accessToken, 'GET', $baseUrl);
@@ -95,7 +99,8 @@ class AccountService extends BaseService {
      * @return AccountInfo
      * @throws CtctException
      */
-    public function updateAccountInfo($accessToken, AccountInfo $accountInfo) {
+    public function updateAccountInfo($accessToken, AccountInfo $accountInfo)
+    {
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.account_info');
 
         $request = parent::sendRequestWithBody($accessToken, 'PUT', $baseUrl, $accountInfo);
@@ -108,4 +113,5 @@ class AccountService extends BaseService {
 
         return AccountInfo::create(json_decode($response->getBody(), true));
     }
+
 }
