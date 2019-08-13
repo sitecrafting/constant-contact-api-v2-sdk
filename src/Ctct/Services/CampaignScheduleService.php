@@ -24,7 +24,6 @@ class CampaignScheduleService extends BaseService {
      */
     public function addSchedule($accessToken, $campaignId, Schedule $schedule) {
         $baseUrl = Config::get('endpoints.base_url') . sprintf(Config::get('endpoints.campaign_schedules'), $campaignId);
-
         try {
             $response = parent::sendRequestWithBody($accessToken, 'POST', $baseUrl, $schedule);
         } catch (TransferException $e) {

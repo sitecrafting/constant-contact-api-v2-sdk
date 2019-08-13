@@ -81,10 +81,8 @@ class AccountService extends BaseService
     {
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.account_info');
 
-        $request = parent::sendRequestWithoutBody($accessToken, 'GET', $baseUrl);
-
         try {
-            $response = parent::getClient()->send($request);
+            $response = parent::sendRequestWithoutBody($accessToken, 'GET', $baseUrl);
         } catch (TransferException $e) {
             throw parent::convertException($e);
         }
