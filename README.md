@@ -2,7 +2,8 @@
 
 ## About
 
-The original project appears to be abundant. This is our temporary solution to get some of the dependencies upgraded to more usable versions.
+The original project appears to be abandoned. This is our solution to get some of the dependencies upgraded to more usable versions. We have only upgraded the methods that we use, it is possible we have not upgraded the methods you use. Please feel free to upgrade any methods we have not and provide a pull request.
+
 Original project is [located here](https://github.com/constantcontact/php-sdk).
 
 ### This library utilizes [Guzzle 6](http://guzzle.readthedocs.org/)
