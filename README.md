@@ -18,7 +18,7 @@ Original project is [located here](https://github.com/constantcontact/php-sdk).
          }
      ],
      "require": {
-         "sitecrafting/constant-contact-api-v2-sdk": "dev-master"
+         "sitecrafting/constant-contact-sdk": "dev-master"
      }
 ```
 
