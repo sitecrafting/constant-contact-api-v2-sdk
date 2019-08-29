@@ -14,11 +14,11 @@ Original project is [located here](https://github.com/constantcontact/php-sdk).
  "repositories": [
          {
              "type": "vcs",
-             "url": "git@bitbucket.org:sitecrafting/constant-contact-sdk.git"
+             "url": "git@github.com:sitecrafting/constant-contact-api-v2-sdk.git"
          }
      ],
      "require": {
-         "sitecrafting/constant-contact-sdk": "dev-master"
+         "sitecrafting/constant-contact-api-v2-sdk": "dev-master"
      }
 ```
 
